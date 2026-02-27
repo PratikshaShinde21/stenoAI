@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcript Viewer – StenoAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./../css/transcript.css">
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav-container">
+        <a href="./../index.html" class="logo-section">
+            <div class="logo">S</div>
+            <div class="brand">Steno<span>AI</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="./../index.html">Home</a></li>
+            <li><a href="./record.html">Record</a></li>
+            <li><a href="./transcript.html" class="active">Transcript</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="./record.html" class="nav-cta">Get Started →</a></li>
+        </ul>
+        <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="./../index.html">Home</a></li>
+            <li><a href="./record.html">Record</a></li>
+            <li><a href="./transcript.html">Transcript</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+        <a href="./record.html" class="mobile-nav-cta">Get Started →</a>
+    </div>
+</header>
+
+<div class="page-header">
+    <h1 class="page-title"><em>Transcript</em> Viewer</h1>
+    <p class="page-subtitle">Upload, browse and search your saved transcripts</p>
+</div>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon" style="background:var(--sage)">🗂️</div>
+            <h2 class="card-title">Saved Sessions</h2>
+        </div>
+        <div class="privacy-badge">🔒 Sessions stored only in your browser — never on any server</div>
+        <div id="savedSessionsGrid" class="saved-sessions-grid">
+            <div style="color:var(--text-soft);font-size:0.9rem;padding:0.5rem 0">Loading sessions...</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon" style="background:var(--deep)">📁</div>
+            <h2 class="card-title">Load Transcript</h2>
+        </div>
+        <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">📂</div>
+            <h3>Drop your transcript file here</h3>
+            <p>Or click to browse — supports .txt files exported from StenoAI</p>
+        </div>
+        <input type="file" id="fileInput" accept=".txt">
+        <div style="margin-top:1rem;display:flex;gap:0.8rem;flex-wrap:wrap">
+            <button class="btn btn-primary" onclick="loadDemo()">📋 Load Demo Transcript</button>
+            <button class="btn btn-outline" onclick="clearTranscript()">🗑 Clear</button>
+        </div>
+    </div>
+
+    <div class="stats-row" id="statsRow">
+        <div class="stat-box"><div class="num" id="sWords">0</div><div class="lbl">Total Words</div></div>
+        <div class="stat-box"><div class="num" id="sLines">0</div><div class="lbl">Entries</div></div>
+        <div class="stat-box"><div class="num" id="sSpeakers">0</div><div class="lbl">Speakers</div></div>
+        <div class="stat-box"><div class="num" id="sChars">0</div><div class="lbl">Characters</div></div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon" style="background:var(--mist)">👁️</div>
+            <h2 class="card-title">Transcript</h2>
+        </div>
+        <div class="toolbar">
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search transcript..." oninput="searchTranscript()">
+            <button class="btn btn-outline" onclick="exportTxt()">⬇ Export .txt</button>
+        </div>
+        <div class="transcript-display" id="transcriptDisplay">
+            <div class="empty-state"><div class="icon">📄</div><p>No transcript loaded yet.<br>Upload a file above or click <strong>"Load Demo"</strong> to try it out.</p></div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-brand footer-col">
+                <span class="brand-name">StenoAI</span>
+                <p>Professional transcription powered by AI. Record, transcribe and save with ease.</p>
+                <div class="maker-note">Made with ❤️ by <strong>Pratiksha</strong> &amp; <strong>Shubham</strong></div>
+            </div>
+            <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="./index.html">→ Home</a></li><li><a href="./record.html">→ Record</a></li><li><a href="./transcript.html">→ Transcript</a></li><li><a href="./about.html">→ About</a></li><li><a href="./contact.html">→ Contact</a></li></ul></div>
+            <div class="footer-col"><h4>How to Use</h4><ul><li><a href="./record.html">→ Start Recording</a></li><li><a href="./record.html">→ Voice Mode</a></li><li><a href="./transcript.html">→ View Transcript</a></li></ul></div>
+            <div class="footer-col"><h4>Company</h4><ul><li><a href="./about.html">→ About StenoAI</a></li><li><a href="./contact.html">→ Contact Us</a></li></ul></div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 StenoAI · Built with ❤️ by Pratiksha &amp; Shubham</p>
+            <div class="footer-bottom-links"><a href="index.html">Home</a><a href="record.html">Record</a><a href="transcript.html">Transcript</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+        </div>
+    </div>
+</footer>
+
+<script>
+const DB_NAME='StenoAI_DB',DB_VERSION=1,STORE='sessions';
+let db=null;
+function openDB(){return new Promise((res,rej)=>{const r=indexedDB.open(DB_NAME,DB_VERSION);r.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains(STORE)){d.createObjectStore(STORE,{keyPath:'id'});}};r.onsuccess=e=>{db=e.target.result;res(db);};r.onerror=()=>rej(r.error);});}
+function dbGetAll(){return new Promise((res,rej)=>{const tx=db.transaction(STORE,'readonly');const r=tx.objectStore(STORE).getAll();r.onsuccess=()=>res(r.result||[]);r.onerror=()=>rej(r.error);});}
+function dbDelete(id){return new Promise((res,rej)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).delete(id);tx.oncomplete=res;tx.onerror=()=>rej(tx.error);});}
+async function loadSavedSessions(){const grid=document.getElementById('savedSessionsGrid');if(!db){grid.innerHTML='<div style="color:var(--text-soft);font-size:0.9rem">Storage not available</div>';return;}const sessions=await dbGetAll();if(!sessions.length){grid.innerHTML='<div style="color:var(--text-soft);font-size:0.9rem;padding:0.5rem 0">No sessions yet. <a href="record.html" style="color:var(--deep)">Go record →</a></div>';return;}sessions.sort((a,b)=>b.createdAt-a.createdAt);grid.innerHTML=sessions.map(s=>`<div class="saved-card"><div class="saved-card-name">📄 ${s.name}</div><div class="saved-card-meta">${new Date(s.createdAt).toLocaleString()}<br>${s.wordCount} words · ${s.lineCount} lines</div><div class="saved-card-btns"><button class="btn-xs btn-xs-primary" onclick="loadSavedSession('${s.id}')">👁 View</button><button class="btn-xs btn-xs-danger" onclick="deleteSavedSession('${s.id}')">✕</button></div></div>`).join('');}
+async function loadSavedSession(id){const sessions=await dbGetAll();const s=sessions.find(x=>x.id===id);if(!s)return;parsedEntries=s.entries.map(e=>({time:e.time,speaker:e.speaker,text:e.text}));renderTranscript(parsedEntries);updateStats();document.getElementById('transcriptDisplay').scrollIntoView({behavior:'smooth'});}
+async function deleteSavedSession(id){if(!confirm('Delete this session?'))return;await dbDelete(id);loadSavedSessions();}
+let parsedEntries=[];
+document.getElementById('fileInput').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>parseTranscript(ev.target.result);r.readAsText(f);});
+const uz=document.getElementById('uploadZone');
+uz.addEventListener('dragover',e=>{e.preventDefault();uz.classList.add('drag-over');});
+uz.addEventListener('dragleave',()=>uz.classList.remove('drag-over'));
+uz.addEventListener('drop',e=>{e.preventDefault();uz.classList.remove('drag-over');const f=e.dataTransfer.files[0];if(f){const r=new FileReader();r.onload=ev=>parseTranscript(ev.target.result);r.readAsText(f);}});
+function parseTranscript(text){parsedEntries=[];const blocks=text.split(/\n(?=\[)/);blocks.forEach(b=>{const m=b.match(/^\[(.+?)\]\s+(.+?):\n([\s\S]+)/);if(m)parsedEntries.push({time:m[1].trim(),speaker:m[2].trim(),text:m[3].trim()});});if(parsedEntries.length===0){text.split('\n').filter(l=>l.trim()).forEach((l,i)=>parsedEntries.push({time:'-',speaker:'Line '+(i+1),text:l}));}renderTranscript(parsedEntries);updateStats();}
+function renderTranscript(entries,q=''){const d=document.getElementById('transcriptDisplay');if(entries.length===0){d.innerHTML='<div class="empty-state"><div class="icon">🔍</div><p>No results found for your search.</p></div>';return;}d.innerHTML=entries.map(e=>{let t=e.text;if(q){const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');t=t.replace(re,'<span class="highlight">$1</span>');}return`<div class="entry"><div class="entry-time">[${e.time}]</div><span class="entry-speaker">${e.speaker}:</span> ${t}</div>`;}).join('');}
+function updateStats(){document.getElementById('statsRow').style.display='grid';const words=parsedEntries.reduce((a,e)=>a+e.text.split(/\s+/).filter(Boolean).length,0);const chars=parsedEntries.reduce((a,e)=>a+e.text.length,0);const speakers=new Set(parsedEntries.map(e=>e.speaker)).size;document.getElementById('sWords').textContent=words;document.getElementById('sLines').textContent=parsedEntries.length;document.getElementById('sSpeakers').textContent=speakers;document.getElementById('sChars').textContent=chars;}
+function searchTranscript(){const q=document.getElementById('searchBox').value.trim();if(!q){renderTranscript(parsedEntries);return;}const f=parsedEntries.filter(e=>e.text.toLowerCase().includes(q.toLowerCase())||e.speaker.toLowerCase().includes(q.toLowerCase()));renderTranscript(f,q);}
+function clearTranscript(){parsedEntries=[];document.getElementById('transcriptDisplay').innerHTML='<div class="empty-state"><div class="icon">📄</div><p>No transcript loaded yet.<br>Upload a file or click "Load Demo".</p></div>';document.getElementById('statsRow').style.display='none';document.getElementById('searchBox').value='';}
+function loadDemo(){parsedEntries=[{time:'09:00:01 AM',speaker:'Judge',text:'Court is now in session. Both parties shall present their arguments.'},{time:'09:00:15 AM',speaker:'Plaintiff Counsel',text:'Your Honor, as stated by my client, the defendant has violated the terms of the contract.'},{time:'09:00:42 AM',speaker:'Defense Counsel',text:'My client\'s position is entirely different. The contract was fulfilled as agreed.'},{time:'09:01:20 AM',speaker:'Judge',text:'Both submissions have been noted. The next hearing date will be set accordingly.'}];renderTranscript(parsedEntries);updateStats();}
+function exportTxt(){if(parsedEntries.length===0){alert('No transcript to export!');return;}let o='══════════════════════════════════════\n         STENOAI TRANSCRIPT            \n══════════════════════════════════════\n\n';parsedEntries.forEach(e=>{o+='['+e.time+'] '+e.speaker+':\n'+e.text+'\n\n';});o+='⚖️ COURT CERTIFICATE\nGenerated by StenoAI\n';const b=new Blob([o],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='transcript.txt';a.click();}
+const hb=document.getElementById('hamburgerBtn'),mm=document.getElementById('mobileMenu');
+hb.addEventListener('click',()=>{hb.classList.toggle('open');mm.classList.toggle('open');});
+document.addEventListener('click',e=>{if(!hb.contains(e.target)&&!mm.contains(e.target)){hb.classList.remove('open');mm.classList.remove('open');}});
+openDB().then(()=>loadSavedSessions()).catch(()=>{document.getElementById('savedSessionsGrid').innerHTML='<div style="color:var(--text-soft);font-weight:500;font-size:0.9rem">Storage not available</div>';});
+</script>
+</body>
+</html>

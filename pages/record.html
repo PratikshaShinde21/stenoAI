@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record Session – StenoAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./../css/record.css">
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav-container">
+        <a href="./../index.html" class="logo-section">
+            <div class="logo">S</div>
+            <div class="brand">Steno<span>AI</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="./../index.html">Home</a></li>
+            <li><a href="./record.html" class="active">Record</a></li>
+            <li><a href="./transcript.html">Transcript</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="./record.html" class="nav-cta">Get Started →</a></li>
+        </ul>
+        <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="./../index.html">Home</a></li>
+            <li><a href="./record.html">Record</a></li>
+            <li><a href="./transcript.html">Transcript</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+        <a href="./record.html" class="mobile-nav-cta">Get Started →</a>
+    </div>
+</header>
+
+<div class="page-header">
+    <h1 class="page-title"><em>Recording</em> Session</h1>
+    <p class="page-subtitle">Record · Transcribe · Save with Audio Playback</p>
+</div>
+
+<div class="container">
+    <div class="main-grid">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon">🎙</div>
+                <h2 class="card-title">Recording Session</h2>
+            </div>
+            <div class="mode-toggle">
+                <button class="mode-btn active" id="textModeBtn">⌨️ Type Mode</button>
+                <button class="mode-btn" id="voiceModeBtn">🎤 Voice + Audio</button>
+            </div>
+            <div class="info-box">✦ <strong>New!</strong> Voice mode records audio you can play back and save later.</div>
+            <input type="text" id="sessionName" placeholder="📁 Session name (e.g. Court_Hearing_Jan15)">
+
+            <div class="input-section active" id="textSection">
+                <input type="text" id="textSpeaker" placeholder="👤 Speaker name">
+                <textarea id="textInput" placeholder="Type your text here...&#10;&#10;Press Ctrl+Enter to add quickly"></textarea>
+                <button class="btn btn-primary" id="addTextBtn" style="width:100%">+ Add to Transcript</button>
+            </div>
+
+            <div class="input-section" id="voiceSection">
+                <select id="languageSelect">
+                    <option value="en-IN">🇮🇳 English (India)</option>
+                    <option value="en-US">🇺🇸 English (US)</option>
+                    <option value="hi-IN">🇮🇳 हिंदी (Hindi)</option>
+                    <option value="mr-IN">🇮🇳 मराठी (Marathi)</option>
+                    <option value="bn-IN">🇮🇳 বাংলা (Bengali)</option>
+                    <option value="ta-IN">🇮🇳 தமிழ் (Tamil)</option>
+                    <option value="te-IN">🇮🇳 తెలుగు (Telugu)</option>
+                    <option value="gu-IN">🇮🇳 ગુજરાતી (Gujarati)</option>
+                    <option value="kn-IN">🇮🇳 ಕನ್ನಡ (Kannada)</option>
+                    <option value="ml-IN">🇮🇳 മലയാളം (Malayalam)</option>
+                    <option value="pa-IN">🇮🇳 ਪੰਜਾਬੀ (Punjabi)</option>
+                    <option value="or-IN">🇮🇳 ଓଡ଼ିଆ (Odia)</option>
+                    <option value="as-IN">🇮🇳 অসমীয়া (Assamese)</option>
+                </select>
+                <input type="text" id="voiceSpeaker" placeholder="👤 Speaker name (optional)">
+                <div class="recording-indicator" id="recordingIndicator">
+                    <div class="recording-dot"></div>
+                    <span style="font-weight:600;color:#a03e3e">Recording:</span>
+                    <span class="recording-time" id="recordingTime">0:00</span>
+                </div>
+                <div class="controls-grid">
+                    <button class="btn btn-primary" id="startVoiceBtn">🎙 Start Recording</button>
+                    <button class="btn btn-danger" id="stopVoiceBtn" disabled>⏹ Stop</button>
+                </div>
+                <div class="status-badge ready" id="voiceStatus">Ready to record</div>
+                <div class="audio-player" id="audioPlayer">
+                    <h4>🔊 Recorded Audio</h4>
+                    <audio controls id="audioPlayback"></audio>
+                    <button class="btn btn-mist" id="saveAudioBtn" style="width:100%;margin-top:0.8rem">💾 Save Audio File</button>
+                </div>
+            </div>
+
+            <div class="controls-grid" style="margin-top:1.4rem">
+                <button class="btn btn-success" id="saveBtn">💾 Save All Files</button>
+                <button class="btn btn-outline" id="clearBtn">🗑 Clear</button>
+            </div>
+
+            <div style="margin-top:1.8rem">
+                <h3 style="font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:0.9rem;color:var(--dark);font-weight:600">Live Transcript</h3>
+                <div class="transcript-box" id="transcriptBox">
+                    <div class="empty-message">Your transcript will appear here as you speak or type...</div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="card">
+                <div class="card-header" style="margin-bottom:1.1rem">
+                    <div class="card-icon" style="background:var(--sage)">📊</div>
+                    <h2 class="card-title">Live Stats</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-value" id="wordCount">0</div><div class="stat-label">Words</div></div>
+                    <div class="stat-card"><div class="stat-value" id="lineCount">0</div><div class="stat-label">Lines</div></div>
+                    <div class="stat-card"><div class="stat-value" id="duration">0:00</div><div class="stat-label">Time</div></div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top:1.2rem">
+                <div class="card-header">
+                    <div class="card-icon" style="background:var(--sage-d)">🗂️</div>
+                    <h2 class="card-title">Saved Sessions</h2>
+                </div>
+                <div class="badge-strip">
+                    <div class="badge badge-green">🔒 100% Local · No Server</div>
+                    <div class="badge badge-blue">⚖️ Court Ready · Tamper-Proof</div>
+                </div>
+                <div id="sessionList" class="session-list">
+                    <div class="empty-sessions">No sessions yet</div>
+                </div>
+                <button class="btn btn-mist" onclick="saveToLocal()" style="width:100%;margin-top:1rem">💾 Save to Browser</button>
+            </div>
+
+            <div class="card" style="margin-top:1.2rem">
+                <div class="card-header">
+                    <div class="card-icon" style="background:var(--deep-d)">✦</div>
+                    <h2 class="card-title">Features</h2>
+                </div>
+                <div class="feat-chips">
+                    <div class="feat-chip"><strong>🎙 Audio Recording</strong><p>Records audio while transcribing simultaneously</p></div>
+                    <div class="feat-chip"><strong>🔊 Playback</strong><p>Listen to recorded audio anytime</p></div>
+                    <div class="feat-chip"><strong>🌐 13 Languages</strong><p>All major Indian languages supported</p></div>
+                    <div class="feat-chip"><strong>📥 Complete Save</strong><p>Transcript + Summary + Audio files</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-brand footer-col">
+                <span class="brand-name">StenoAI</span>
+                <p>Professional transcription powered by AI. Record, transcribe & save with ease.</p>
+                <div class="maker-note">Made with ❤️ by <strong>Pratiksha</strong> &amp; <strong>Shubham</strong></div>
+            </div>
+            <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="./index.html">→ Home</a></li><li><a href="./record.html">→ Record</a></li><li><a href="./transcript.html">→ Transcript</a></li><li><a href="./about.html">→ About</a></li><li><a href="./contact.html">→ Contact</a></li></ul></div>
+            <div class="footer-col"><h4>How to Use</h4><ul><li><a href="./record.html">→ Start Recording</a></li><li><a href="./record.html">→ Type Mode</a></li><li><a href="./record.html">→ Voice Mode</a></li><li><a href="./transcript.html">→ View Transcript</a></li></ul></div>
+            <div class="footer-col"><h4>Company</h4><ul><li><a href="./about.html">→ About StenoAI</a></li><li><a href="./contact.html">→ Contact Us</a></li></ul></div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 StenoAI · Built with ❤️ by Pratiksha &amp; Shubham</p>
+            <div class="footer-bottom-links"><a href="./index.html">Home</a><a href="./record.html">Record</a><a href="./transcript.html">Transcript</a><a href="./about.html">About</a><a href="./contact.html">Contact</a></div>
+        </div>
+    </div>
+</footer>
+
+<script>
+const DB_NAME='StenoAI_DB',DB_VERSION=1,STORE='sessions';
+let db=null;
+function openDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(DB_NAME,DB_VERSION);req.onupgradeneeded=e=>{const d=e.target.result;if(!d.objectStoreNames.contains(STORE)){const store=d.createObjectStore(STORE,{keyPath:'id'});store.createIndex('createdAt','createdAt',{unique:false});}};req.onsuccess=e=>{db=e.target.result;resolve(db);};req.onerror=()=>reject(req.error);});}
+function dbPut(data){return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).put(data);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}
+function dbGetAll(){return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readonly');const req=tx.objectStore(STORE).getAll();req.onsuccess=()=>resolve(req.result||[]);req.onerror=()=>reject(req.error);});}
+function dbDelete(id){return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).delete(id);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}
+async function loadSessionList(){const sessions=await dbGetAll();const list=document.getElementById('sessionList');if(!sessions.length){list.innerHTML='<div class="empty-sessions">No sessions yet</div>';return;}sessions.sort((a,b)=>b.createdAt-a.createdAt);list.innerHTML=sessions.map(s=>`<div class="session-item"><div class="session-item-info"><div class="session-item-name">📄 ${s.name}</div><div class="session-item-meta">${new Date(s.createdAt).toLocaleString()} · ${s.wordCount} words</div></div><div class="session-item-btns"><button class="btn-xs btn-xs-primary" onclick="downloadSession('${s.id}')">⬇</button><button class="btn-xs btn-xs-danger" onclick="deleteSession('${s.id}')">✕</button></div></div>`).join('');}
+async function downloadSession(id){const sessions=await dbGetAll();const s=sessions.find(x=>x.id===id);if(!s)return;let full='══════════════════════════════════════\n         STENOAI TRANSCRIPT            \n══════════════════════════════════════\n\n';full+='Session: '+s.name+'\nDate: '+new Date(s.createdAt).toLocaleString()+'\nWords: '+s.wordCount+' | Lines: '+s.lineCount+'\n\n──────────────────────────────────────\n\n';s.entries.forEach(e=>{full+='['+e.time+'] '+e.speaker+':\n'+e.text+'\n\n';});full+='══════════════════════════════════════\n⚖️ COURT CERTIFICATE\nGenerated by StenoAI\n';download(full,'stenoai_'+s.name.replace(/\s+/g,'_')+'.txt');}
+async function deleteSession(id){if(!confirm('Delete this session?'))return;await dbDelete(id);loadSessionList();}
+async function saveToLocal(){if(transcript.length===0){alert('Create a transcript first!');return;}const name=sessionName.value.trim()||'Session_'+Date.now();const id='session_'+Date.now();const data={id,name,createdAt:Date.now(),wordCount,lineCount,entries:transcript,audioBase64:audioBlob?await blobToBase64(audioBlob):null};await dbPut(data);alert('✅ Session saved to browser!\n🔒 Only on your device');loadSessionList();}
+function blobToBase64(blob){return new Promise(res=>{const r=new FileReader();r.onloadend=()=>res(r.result);r.readAsDataURL(blob);});}
+const textModeBtn=document.getElementById('textModeBtn'),voiceModeBtn=document.getElementById('voiceModeBtn'),textSection=document.getElementById('textSection'),voiceSection=document.getElementById('voiceSection');
+textModeBtn.onclick=()=>{textModeBtn.classList.add('active');voiceModeBtn.classList.remove('active');textSection.classList.add('active');voiceSection.classList.remove('active');};
+voiceModeBtn.onclick=()=>{voiceModeBtn.classList.add('active');textModeBtn.classList.remove('active');voiceSection.classList.add('active');textSection.classList.remove('active');};
+let transcript=[],wordCount=0,lineCount=0,startTime=null,timerInterval=null,sessionStart=null,mediaRecorder=null,audioChunks=[],audioBlob=null,recordingTimerInterval=null;
+const transcriptBox=document.getElementById('transcriptBox'),sessionName=document.getElementById('sessionName'),saveBtn=document.getElementById('saveBtn'),clearBtn=document.getElementById('clearBtn'),audioPlayer=document.getElementById('audioPlayer'),audioPlayback=document.getElementById('audioPlayback'),saveAudioBtn=document.getElementById('saveAudioBtn'),recordingIndicator=document.getElementById('recordingIndicator'),recordingTime=document.getElementById('recordingTime');
+const textInput=document.getElementById('textInput'),textSpeaker=document.getElementById('textSpeaker'),addTextBtn=document.getElementById('addTextBtn');
+addTextBtn.onclick=()=>{const t=textInput.value.trim();if(!t){alert('Please enter text!');return;}addEntry(textSpeaker.value.trim()||'Speaker',t);textInput.value='';textInput.focus();};
+textInput.onkeydown=(e)=>{if(e.ctrlKey&&e.key==='Enter'){e.preventDefault();addTextBtn.click();}};
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let recognition=SR?new SR():null,isRecording=false;
+const startVoiceBtn=document.getElementById('startVoiceBtn'),stopVoiceBtn=document.getElementById('stopVoiceBtn'),voiceStatus=document.getElementById('voiceStatus'),languageSelect=document.getElementById('languageSelect'),voiceSpeaker=document.getElementById('voiceSpeaker');
+startVoiceBtn.onclick=async()=>{try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});mediaRecorder=new MediaRecorder(stream);audioChunks=[];mediaRecorder.ondataavailable=e=>audioChunks.push(e.data);mediaRecorder.onstop=()=>{audioBlob=new Blob(audioChunks,{type:'audio/webm'});audioPlayback.src=URL.createObjectURL(audioBlob);audioPlayer.classList.add('active');};mediaRecorder.start();const rs=Date.now();recordingTimerInterval=setInterval(()=>{const el=Math.floor((Date.now()-rs)/1000);recordingTime.textContent=`${Math.floor(el/60)}:${(el%60).toString().padStart(2,'0')}`;},1000);recordingIndicator.classList.add('active');if(!recognition){alert('Speech recognition not supported. Try Chrome.');return;}recognition.lang=languageSelect.value;recognition.continuous=true;recognition.interimResults=false;recognition.onresult=e=>{const t=Array.from(e.results).slice(e.resultIndex).map(r=>r[0].transcript).join(' ').trim();if(t)addEntry(voiceSpeaker.value.trim()||'Speaker',t);};recognition.onerror=e=>{voiceStatus.textContent='Error: '+e.error;voiceStatus.className='status-badge recording';};recognition.start();isRecording=true;startVoiceBtn.disabled=true;stopVoiceBtn.disabled=false;voiceStatus.textContent='Recording...';voiceStatus.className='status-badge recording';}catch(err){alert('Microphone access denied.');}};
+stopVoiceBtn.onclick=()=>{if(recognition)recognition.stop();if(mediaRecorder&&mediaRecorder.state!=='inactive')mediaRecorder.stop();if(recordingTimerInterval)clearInterval(recordingTimerInterval);recordingIndicator.classList.remove('active');isRecording=false;startVoiceBtn.disabled=false;stopVoiceBtn.disabled=true;voiceStatus.textContent='Stopped';voiceStatus.className='status-badge ready';};
+saveAudioBtn.onclick=()=>{if(!audioBlob)return;const s=sessionName.value.trim()||'session_'+Date.now();const u=URL.createObjectURL(audioBlob);const a=document.createElement('a');a.href=u;a.download='record_'+s+'_audio.webm';a.click();URL.revokeObjectURL(u);};
+function addEntry(speaker,text){if(!sessionStart){sessionStart=new Date();startTimer();}const now=new Date(),time=now.toLocaleTimeString();transcript.push({time,speaker,text});wordCount+=text.split(/\s+/).filter(Boolean).length;lineCount++;updateStats();const empty=transcriptBox.querySelector('.empty-message');if(empty)empty.remove();const div=document.createElement('div');div.className='transcript-entry';div.innerHTML='<div class="transcript-time">'+time+'</div><span class="transcript-speaker">'+speaker+':</span> '+text;transcriptBox.appendChild(div);transcriptBox.scrollTop=transcriptBox.scrollHeight;}
+function updateStats(){document.getElementById('wordCount').textContent=wordCount;document.getElementById('lineCount').textContent=lineCount;}
+function startTimer(){startTime=Date.now();timerInterval=setInterval(()=>{const el=Math.floor((Date.now()-startTime)/1000);document.getElementById('duration').textContent=Math.floor(el/60)+':'+(el%60).toString().padStart(2,'0');},1000);}
+clearBtn.onclick=()=>{if(transcript.length>0&&!confirm('Clear all data?'))return;transcript=[];transcriptBox.innerHTML='<div class="empty-message">Your transcript will appear here as you speak or type...</div>';wordCount=0;lineCount=0;audioBlob=null;audioPlayer.classList.remove('active');updateStats();if(timerInterval){clearInterval(timerInterval);startTime=null;sessionStart=null;}document.getElementById('duration').textContent='0:00';};
+saveBtn.onclick=async()=>{if(transcript.length===0){alert('No transcript to save!');return;}const session=sessionName.value.trim()||'session_'+Date.now();let full='══════════════════════════════════════\n         STENOAI TRANSCRIPT            \n══════════════════════════════════════\n\nSession: '+session+'\nDate: '+sessionStart.toLocaleString()+'\nWords: '+wordCount+' | Lines: '+lineCount+'\n\n──────────────────────────────────────\n\n';transcript.forEach(e=>{full+='['+e.time+'] '+e.speaker+':\n'+e.text+'\n\n';});full+='══════════════════════════════════════\n⚖️ COURT CERTIFICATE\nGenerated by StenoAI\n';download(full,'record_'+session+'.txt');if(audioBlob){setTimeout(()=>{const u=URL.createObjectURL(audioBlob);const a=document.createElement('a');a.href=u;a.download='record_'+session+'_audio.webm';a.click();URL.revokeObjectURL(u);},500);}await saveToLocal();alert('✅ Files downloaded!\n💾 Saved to browser storage!');};
+function download(content,filename){const blob=new Blob([content],{type:'text/plain'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;a.click();URL.revokeObjectURL(url);}
+const hamburgerBtn=document.getElementById('hamburgerBtn'),mobileMenu=document.getElementById('mobileMenu');
+hamburgerBtn.addEventListener('click',()=>{hamburgerBtn.classList.toggle('open');mobileMenu.classList.toggle('open');});
+document.addEventListener('click',e=>{if(!hamburgerBtn.contains(e.target)&&!mobileMenu.contains(e.target)){hamburgerBtn.classList.remove('open');mobileMenu.classList.remove('open');}});
+openDB().then(()=>loadSessionList()).catch(err=>console.warn('IndexedDB:',err));
+</script>
+</body>
+</html>

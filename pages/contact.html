@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact – StenoAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./../css/contact.css">
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav-container">
+        <a href="./../index.html" class="logo-section">
+            <div class="logo">S</div>
+            <div class="brand">Steno<span>AI</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="./../index.html">Home</a></li>
+            <li><a href="./record.html">Record</a></li>
+            <li><a href="./transcript.html">Transcript</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html" class="active">Contact</a></li>
+            <li><a href="./record.html" class="nav-cta">Get Started →</a></li>
+        </ul>
+        <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="./../index.html">Home</a></li>
+            <li><a href="./record.html">Record</a></li>
+            <li><a href="./transcript.html">Transcript</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+        <a href="./record.html" class="mobile-nav-cta">Get Started →</a>
+    </div>
+</header>
+
+<div class="page-header">
+    <h1 class="page-title"><em>Contact</em> Us</h1>
+    <p class="page-subtitle">Have a question or feedback? We'd love to hear from you.</p>
+</div>
+
+<div class="container">
+    <div class="contact-grid">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background:var(--sage)">📬</div>
+                <h2 class="card-title">Send a Message</h2>
+            </div>
+            <div class="form-group"><label>Your Name</label><input type="text" id="fname" placeholder="e.g. Rahul Sharma"></div>
+            <div class="form-group"><label>Email Address</label><input type="email" id="femail" placeholder="rahul@example.com"></div>
+            <div class="form-group">
+                <label>Subject</label>
+                <select id="fsubject">
+                    <option value="">Select a topic</option>
+                    <option>🐛 Bug Report</option>
+                    <option>✨ Feature Request</option>
+                    <option>❓ General Question</option>
+                    <option>🤝 Partnership / Collaboration</option>
+                    <option>📝 Other</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Message</label><textarea id="fmessage" placeholder="Tell us what's on your mind... we read every message!"></textarea></div>
+            <button class="btn btn-primary" onclick="submitForm()">→ Send Message</button>
+            <div class="success-msg" id="successMsg">✅ Message sent! We'll reply within 24 hours.</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:1.4rem">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="background:var(--mist)">📍</div>
+                    <h2 class="card-title">Get in Touch</h2>
+                </div>
+                <div class="contact-info">
+                    <div class="info-item"><div class="info-icon" style="background:var(--sage)">📧</div><div><h4>Email</h4><a href="mailto:hello@stenoai.in">hello@stenoai.in</a></div></div>
+                    <div class="info-item"><div class="info-icon" style="background:var(--mist)">🐙</div><div><h4>GitHub</h4><a href="#">github.com/stenoai</a></div></div>
+                    <div class="info-item"><div class="info-icon" style="background:var(--cream)">🕐</div><div><h4>Response Time</h4><p>Usually within 24 hours on weekdays.</p></div></div>
+                    <div class="info-item"><div class="info-icon" style="background:var(--cream)">🇮🇳</div><div><h4>Based in India</h4><p>Building awesome tools for Indian professionals.</p></div></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon" style="background:var(--deep)">❓</div>
+                    <h2 class="card-title">FAQ</h2>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is StenoAI free to use? <span class="faq-arrow">▼</span></div><div class="faq-a">Yes! StenoAI is completely free. No sign-up or payment required.</div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is my data stored anywhere? <span class="faq-arrow">▼</span></div><div class="faq-a">No! Everything runs in your browser. No audio or text is ever uploaded to any server.</div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Which browsers are supported? <span class="faq-arrow">▼</span></div><div class="faq-a">Voice mode works best on Chrome or Edge. Text mode works on most modern browsers.</div></div>
+                    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I add more languages? <span class="faq-arrow">▼</span></div><div class="faq-a">Contact us with your language request! We plan to support more languages based on user demand.</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-brand footer-col">
+                <span class="brand-name">StenoAI</span>
+                <p>Professional transcription powered by AI. Record, transcribe and save with ease.</p>
+                <div class="maker-note">Made with ❤️ by <strong>Pratiksha</strong> &amp; <strong>Shubham</strong></div>
+            </div>
+            <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="./index.html">→ Home</a></li><li><a href="./record.html">→ Record</a></li><li><a href="./transcript.html">→ Transcript</a></li><li><a href="./about.html">→ About</a></li><li><a href="./contact.html">→ Contact</a></li></ul></div>
+            <div class="footer-col"><h4>How to Use</h4><ul><li><a href="./record.html">→ Start Recording</a></li><li><a href="./record.html">→ Voice Mode</a></li><li><a href="./transcript.html">→ View Transcript</a></li></ul></div>
+            <div class="footer-col"><h4>Company</h4><ul><li><a href="./about.html">→ About StenoAI</a></li><li><a href="./contact.html">→ Contact Us</a></li></ul></div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 StenoAI · Built with ❤️ by Pratiksha &amp; Shubham</p>
+            <div class="footer-bottom-links"><a href="./index.html">Home</a><a href="./record.html">Record</a><a href="./transcript.html">Transcript</a><a href="./about.html">About</a><a href="./contact.html">Contact</a></div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function submitForm(){const name=document.getElementById('fname').value.trim();const email=document.getElementById('femail').value.trim();const msg=document.getElementById('fmessage').value.trim();if(!name||!email||!msg){alert('Please fill in your name, email and message!');return;}const s=document.getElementById('successMsg');s.style.display='block';document.getElementById('fname').value='';document.getElementById('femail').value='';document.getElementById('fsubject').value='';document.getElementById('fmessage').value='';setTimeout(()=>s.style.display='none',5000);}
+    function toggleFaq(el){const ans=el.nextElementSibling;const arrow=el.querySelector('.faq-arrow');const isOpen=ans.classList.contains('open');document.querySelectorAll('.faq-a').forEach(a=>a.classList.remove('open'));document.querySelectorAll('.faq-arrow').forEach(s=>s.classList.remove('open'));if(!isOpen){ans.classList.add('open');arrow.classList.add('open');}}
+    const hb=document.getElementById('hamburgerBtn'),mm=document.getElementById('mobileMenu');
+    hb.addEventListener('click',()=>{hb.classList.toggle('open');mm.classList.toggle('open');});
+    document.addEventListener('click',e=>{if(!hb.contains(e.target)&&!mm.contains(e.target)){hb.classList.remove('open');mm.classList.remove('open');}});
+</script>
+</body>
+</html>
